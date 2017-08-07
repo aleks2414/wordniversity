@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  experience: MyString
+  user_id: 
+  university_id: 
+
+two:
+  experience: MyString
+  user_id: 
+  university_id: 

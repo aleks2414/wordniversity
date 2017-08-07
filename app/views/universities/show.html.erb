@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>User:</strong>
   <%= @university.user %>
@@ -54,6 +52,32 @@
   <strong>Linkedin:</strong>
   <%= @university.linkedin %>
 </p>
+
+
+
+<%= form_tag university_experiences_path(@university) do %>
+  <% @kennel.each do |experience| %>
+    <%= fields_for 'experiences[]', experience do |p| %>
+
+      <div class="field">
+        <%= p.label :experience %><br>
+        <%= p.text_field :experience %>
+      </div>
+
+
+    <% end %>
+  <% end %>
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>
+
+<h2><%= @experiences3 %> contributions</h2>
+
+<%= bar_chart @experiences, colors: ["#FD6C6A"] %>
+
+<%= line_chart @experiences2 %>
+
 
 <%= link_to 'Edit', edit_university_path(@university) %> |
 <%= link_to 'Back', universities_path %>

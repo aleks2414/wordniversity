@@ -5,12 +5,27 @@ class UniversitiesController < ApplicationController
   # GET /universities
   # GET /universities.json
   def index
-    @universities = University.all
+    @q = University.ransack(params[:q])
+    @universities = @q.result.uniq
+
+    @universities = @universities.order('id ASC').paginate(:page => params[:page], :per_page => 30)
+
+    @arrUnis = @universities.to_a
   end
 
   # GET /universities/1
   # GET /universities/1.json
   def show
+
+    @kennel = []
+    3.times do
+      @kennel << Experience.new
+    end
+    @experiences = @university.experiences.select(:experience).group(:experience).count.sort {|a,b| b[1]<=>a[1]}
+    @experiences2 = @university.experiences
+    @experiences2 = @experiences2.group_by_day(:created_at).count
+    @experiences3 = @university.experiences.count
+
   end
 
   # GET /universities/new

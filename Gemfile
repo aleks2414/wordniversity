@@ -36,6 +36,10 @@ gem 'grabbit'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'kaminari'
 gem 'omniauth-facebook'
+gem 'addressable'
+gem "chartkick"
+gem 'groupdate'
+gem 'will_paginate', '~> 3.1.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

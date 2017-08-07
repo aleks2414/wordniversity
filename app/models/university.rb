@@ -1,5 +1,6 @@
 class University < ActiveRecord::Base
 	belongs_to :user
+	has_many :experiences, dependent: :destroy
 
 extend FriendlyId
   friendly_id :name, use: :slugged
