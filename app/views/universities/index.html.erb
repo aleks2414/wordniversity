@@ -39,7 +39,7 @@
         <p><%= university.try(:description).truncate(100)%></p>
         <% end %>
         <h5 class="izq"><span class="fa fa-clone"> <%= university.experiences.count %> contributions </span></h5>
-        <h5 class="der"><span class="fa fa-star"> </span></h5>
+        <h5 class="der"><span class="fa fa-star"> <%= university.average_score%></span></h5>
       </div>
     </div>
     <% end %>
