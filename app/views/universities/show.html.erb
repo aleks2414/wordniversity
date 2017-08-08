@@ -59,16 +59,13 @@
   <% @kennel.each do |experience| %>
     <%= fields_for 'experiences[]', experience do |p| %>
 
-      <div class="field">
-        <%= p.label :experience %><br>
         <%= p.text_field :experience %>
-      </div>
 
 
     <% end %>
   <% end %>
   <div class="actions">
-    <%= submit_tag %>
+    <%= submit_tag "create" %>
   </div>
 <% end %>
 
@@ -76,7 +73,7 @@
 
 <%= bar_chart @experiences, colors: ["#FD6C6A"] %>
 
-<%= line_chart @experiences2 %>
+<%= line_chart @experiences2, colors: ["#5B69E5"] %>
 
 
 <%= link_to 'Edit', edit_university_path(@university) %> |

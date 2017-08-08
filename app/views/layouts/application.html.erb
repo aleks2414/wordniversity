@@ -18,7 +18,32 @@
 	<p class="notice"><%= notice %></p>
 <% end %>
 
-<%= yield %>
+<header class="cd-auto-hide-header">
+	<div class="logo"><a href="#0"><img src="img/cd-logo.svg" alt="Logo"></a></div>
 
+	<nav class="cd-primary-nav">
+		<a href="#cd-navigation" class="nav-trigger">
+			<span>
+				<em aria-hidden="true"></em>
+				Menu
+			</span>
+		</a> <!-- .nav-trigger -->
+
+		<ul id="cd-navigation">
+			<li><a href="#0">The team</a></li>
+			<li><a href="#0">Our Products</a></li>
+			<li><a href="#0">Our Services</a></li>
+			<li><a href="#0">Shopping tools</a></li>
+			<li><a href="#0">Contact Us</a></li>
+		</ul>
+	</nav> <!-- .cd-primary-nav -->
+</header> <!-- .cd-auto-hide-header -->
+
+<main class="cd-main-content">
+	<div>
+		<%= yield %>
+	</div>
+</main> <!-- .cd-main-content -->
 </body>
+
 </html>
