@@ -1,80 +1,191 @@
-<p>
-  <strong>User:</strong>
-  <%= @university.user %>
-</p>
+<div class="container">
+  <div id="imback">
+    <div class="img">
+    <%= image_tag @university.image.to_s %>
+    </div>
+    <h3><%= @university.name %></h3>
+    <p><%= @university.address %></p>
+    <h4>-- <%= @university.country_code%> --</h4>
 
-<p>
-  <strong>Url:</strong>
-  <%= @university.url %>
-</p>
+  </div>
+</div>
+<br>
 
-<p>
-  <strong>Name:</strong>
-  <%= @university.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @university.description %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @university.image %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @university.address %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @university.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @university.longitude %>
-</p>
-
-<p>
-  <strong>Facebook:</strong>
-  <%= @university.facebook %>
-</p>
-
-<p>
-  <strong>Twitter:</strong>
-  <%= @university.twitter %>
-</p>
-
-<p>
-  <strong>Linkedin:</strong>
-  <%= @university.linkedin %>
-</p>
-
-
-
+<div id="kingdom">
+<h3>Describe your university experiences in 3 words</h3>
+<ul>
 <%= form_tag university_experiences_path(@university) do %>
   <% @kennel.each do |experience| %>
+
     <%= fields_for 'experiences[]', experience do |p| %>
-
-        <%= p.text_field :experience %>
-
+    
+    <li>
+    <%= p.text_field :experience, required:true, placeholder: "Your best experiences.." %>
+    </li>
 
     <% end %>
   <% end %>
-  <div class="actions">
-    <%= submit_tag "create" %>
-  </div>
+    <% if user_signed_in? %>
+    <li>
+      <%= submit_tag "Share", class: "button button_red2" %>
+    </li>
+    <% else %>
+      <li>
+        <%= link_to "First Sign In", new_user_session_path, class: "button button_red2" %>
+      </li>
+    <% end %>
+    
 <% end %>
-
-<h2><%= @experiences3 %> contributions</h2>
-
-<%= bar_chart @experiences, colors: ["#FD6C6A"] %>
-
-<%= line_chart @experiences2, colors: ["#5B69E5"] %>
+</ul>
+</div>
+<br>
 
 
-<%= link_to 'Edit', edit_university_path(@university) %> |
-<%= link_to 'Back', universities_path %>
+<div class="container">
+<div class="row">
+  <div class="col-md-9">
+  <div class="row">
+  <div class="col-md-6">
+    <div id="magic">
+      
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div id="magic">
+      <h4><%= @experiences3 %> contributions</h4>
+    </div>
+  </div>
+  </div>
+
+    <div id="magic">
+      <h4 class="titulo">Description:</h4>
+      <p><%=@university.description %></p>
+
+      <h4 class="titulo">Experiences</h4>
+      <%= bar_chart @experiences, colors: ["#FD6C6A"], height: "900px" %>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div id="magic">
+      <h4 class="titulo">Information:</h4>
+      <h5><span class="fa fa-globe"> </span> <%=@university.url %></h5>
+      <h5><span class="fa fa-facebook"> </span><%= best_in_place [@university], :facebook, :place_holder => "Add facebook page", :activator => "#800" %> <% if user_signed_in? %><a href="#" id="800"> <span class="grande fa fa-pencil-square"></span></a><%else%>
+        <a href="<%= new_user_session_path %>"> <span class="grande fa fa-pencil-square"></span></a><%end%></h5>
+
+      <h5><span class="fa fa-twitter"> </span><%= best_in_place [@university], :twitter, :place_holder => "Add twitter site", :activator => "#90" %> <% if user_signed_in? %><a href="#" id="90"> <span class="grande fa fa-pencil-square"></span></a><%else%>
+        <a href="<%= new_user_session_path %>"> <span class="grande fa fa-pencil-square"></span></a><%end%></h5>
+
+      <h5><span class="fa fa-linkedin"> </span><%= best_in_place [@university], :linkedin, :place_holder => "Add linked in website", :activator => "#100" %> <% if user_signed_in? %><a href="#" id="100"> <span class="grande fa fa-pencil-square"></span></a><%else%>
+        <a href="<%= new_user_session_path %>"> <span class="grande fa fa-pencil-square"></span></a><%end%></h5>
+    </div>
+
+    <div id="magic">
+      <h4 class="titulo">Location:</h4>
+      <div id="map2"></div>
+    </div>
+
+    <div id="magic">
+      <h4 class="titulo">Contributions:</h4>
+      <%= line_chart @experiences2, colors: ["#5B69E5"], height: "100px" %>
+    </div>
+
+<div id="magic">
+        <h4 class="titulo">Share</h4>
+
+        <div class="row">
+          <div class="col-xs-6">
+            <a class="icon-facebook botones button_red" rel="nofollow"
+            href="http://www.facebook.com/"
+            onclick="popUp=window.open(
+              'http://www.facebook.com/sharer.php?u=<%="#{request.original_url}"%>',
+              'popupwindow',
+              'scrollbars=yes,width=800,height=400');
+            popUp.focus();
+            return false">
+            <i class="fa fa-facebook fa-lg face"></i>
+          </a>
+        </div>
+
+        <div class="col-xs-6">
+          <a class="icon-twitter botones button_red" rel="nofollow"
+          href="http://twitter.com/"
+          onclick="popUp=window.open(
+            'http://twitter.com/intent/tweet?text=\'<%= @university.name %>\' by U-finder - <%="#{request.original_url}"%>',
+            'popupwindow',
+            'scrollbars=yes,width=800,height=400');
+          popUp.focus();
+          return false">
+          <i class="fa fa-twitter fa-lg twitter"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6">
+        <a class="icon-pinterest botones button_red" rel="nofollow"
+        href="http://www.pinterest.com/"
+        onclick="popUp=window.open(
+          'http://pinterest.com/pin/create/button/?url=<%="#{request.original_url}"%>&amp;media=&amp;description=<%= @university.name %>',
+          'popupwindow',
+          'scrollbars=yes,width=800,height=400');
+        popUp.focus();
+        return false">
+        <i class="fa fa-pinterest fa-lg you"></i>
+      </a>
+    </div>
+
+    <div class="col-xs-6">
+      <a class="icon-gplus botones button_red" rel="nofollow"
+      href="http://www.plus.google.com/"
+      onclick="popUp=window.open(
+        'https://plus.google.com/share?url=<%="#{request.original_url}"%>',
+        'popupwindow',
+        'scrollbars=yes,width=800,height=400');
+      popUp.focus();
+      return false">
+      <i class="fa fa-google-plus fa-lg you"></i>
+    </a>
+  </div>
+</div>
+
+</div>
+
+
+  </div>
+</div>
+</div>
+
+
+
+
+<script>
+  $(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
+});
+</script>
+
+<script>
+
+  function initMap() {
+    var myLatLng = {lat: <%= @university.latitude %>, lng: <%= @university.longitude %>};
+
+    var map = new google.maps.Map(document.getElementById('map2'), {
+      zoom: 14,
+      center: myLatLng,
+      scrollwheel: false
+    });
+
+
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: '<%= @university.name %>'
+    });
+  }
+
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6K3XNvvLlBjourkCDTo3CMOUygthuYKo&signed_in=true&callback=initMap"></script>
+

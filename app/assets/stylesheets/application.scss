@@ -29,7 +29,7 @@ font-family:"Gotham_bold";
 }
 
 $light_grey: #F9F9FA;
-$grey: #f2f2f2;
+$grey: #F6F8FA;
 $dark_grey: #3c3c3c;
 $red: #FD6C6A;
 $blue: #5B69E5;
@@ -58,7 +58,7 @@ html {
   left: 0;
   width: 100%;
   height: 60px;
-  background-color: #ffffff;
+  background-color: $grey;
   /* Force Hardware Acceleration */
   -webkit-transform: translateZ(0);
           transform: translateZ(0);
@@ -190,9 +190,10 @@ html {
   top: 60px;
   left: 0;
   width: 100%;
-  background-color: #ffffff;
+  background-color: $grey;
   display: none;
   box-shadow: 0 14px 20px rgba(0, 0, 0, 0.2);
+  list-style: none;
 }
 .cd-primary-nav > ul a {
   /* target primary-nav links */
@@ -201,11 +202,13 @@ html {
   line-height: 50px;
   padding-left: 5%;
   color: #25283D;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   border-top: 1px solid #f2f2f2;
+  border-bottom: solid 2px transparent; 
 }
 .cd-primary-nav > ul a:hover, .cd-primary-nav > ul a.active {
-  color: #8F3985;
+  color: $red;
+  border-bottom: solid 2px $red; 
 }
 @media only screen and (min-width: 1024px) {
   .cd-primary-nav {
@@ -223,6 +226,7 @@ html {
     padding: 0;
     background-color: transparent;
     box-shadow: none;
+    list-style: none;
   }
   .cd-primary-nav > ul::after {
     clear: both;
@@ -253,6 +257,7 @@ html {
     :target is used to show navigation on no-js devices
   */
   display: block;
+  list-style: none;
 }
 @media only screen and (min-width: 1024px) {
   .nav-open .cd-primary-nav ul,
@@ -349,8 +354,8 @@ p, a {
 
   .button {
   transition: background-color .15s linear;
-  font-size: 13px;
-  min-width: 80px;
+  font-size: 15px;
+  min-width: 120px;
   font-family: 'Gotham_bold', sans-serif !important;
   border-radius: 2px;
   padding: 5px;
@@ -358,17 +363,51 @@ p, a {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
+  margin-top: .2rem;
+  background-color: transparent;
+  color: grey !important;
+}
+
+.botones {
+  transition: background-color .15s linear;
+  font-size: 12px;
+  font-family: 'Gotham_bold', sans-serif !important;
+  border-radius: 2px;
+  padding: 5px;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
   margin-top: 1rem;
   background-color: transparent;
+  margin-bottom: 5px;
 }
 
 .button_red {
-  color: $red;
-  background-color: $grey;
+  color: white !important;
+  background-color: $red;
   border: solid 1.2px $red;
   &:hover {
-    color: white;
-    background-color: $red;
+    color: $red !important;
+    background-color: white;
+  }
+
+  &:hover > a {
+  color: white;
+  background-color: $red;
+  }
+
+}
+
+.button_red2 {
+  margin-top: -2px;
+  color: white !important;
+  background-color: $red;
+  border: solid 1.8px white;
+  &:hover {
+    color: $red !important;
+    background-color: white;
   }
 
   &:hover > a {
@@ -434,7 +473,7 @@ h2, h1 {
   }
 }
 
-input[type="date"],input[type="name"], input[type="email"], input[type="textbox"], input[type="number"], input[type="tel"], input[type="text"], input[type="password"], textarea, select {
+input[type="url"],input[type="date"],input[type="name"], input[type="email"], input[type="textbox"], input[type="number"], input[type="tel"], input[type="text"], input[type="password"], textarea, select {
   width: 100%;
   height: 3.5rem;
   border:none;
@@ -467,3 +506,190 @@ width: 100%;
 height: 200px;
 margin-bottom: 20px;
 }
+
+.sim {
+  color: $red !important;
+}
+
+ #banner {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  margin-bottom: 1rem;
+  background-attachment: fixed;
+  background-blend-mode: multiply;
+  background-color: #989898;
+}
+
+.cover_home {
+  background-image: image-url("innova_cover.jpg");
+  height: 65vh;
+}
+
+#hero-text {
+  text-align: left;
+  position: absolute;
+  top: 35%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  h1 {
+    color: white;
+  }
+  input[type="search"] {
+  min-width: 300px;
+  height: 5rem;
+  border:none;
+  border-bottom:1.3px solid #dadada;
+  margin-bottom: 1.5rem;
+  background-color: white !important;
+  padding-left: 10px;
+  border-radius: 6px;
+  }
+}
+
+@media (max-width: 800px)
+{
+
+#banner {
+background-attachment: unset;
+}
+}
+
+#back_in_june {
+  text-align: center;
+  background-color: white !important;
+  img {
+    width: 100px;
+  }
+}
+
+#magic_card {
+  background-color: white;
+  padding: 20px;
+  border: solid 1px #e2e8ea;
+  -webkit-box-shadow: 6px 6px 2px rgba(46,133,155,0.04);
+  box-shadow: 6px 6px 2px rgba(46,133,155,0.04);
+  margin-bottom: 20px;
+  height: 370px;
+  .imagen {
+  height:100px;
+  line-height:100px;
+  overflow:hidden;
+  text-align:center;
+  width:100%;
+  img {
+    margin:-100%
+  }
+  }
+  h3 {
+    text-align: center;
+    font-weight: 900;
+  }
+  h2 {
+    position: absolute;
+    top: 0px;
+    font-size: 20px;
+  }
+  .izq {
+    position: absolute;
+  }
+  .der {
+    display: inline;
+    float: right;
+    i {
+      size: 5px;
+    }
+  }
+}
+
+#back {
+  text-align: center;
+  h1 {
+    background-color: $red;
+    -webkit-box-shadow: 6px 6px 2px rgba(46,133,155,0.04);
+    box-shadow: 6px 6px 2px rgba(46,133,155,0.04);
+    padding: 30px 0;
+    margin: -60px 0 30px 0;
+    color: white;
+  }
+}
+
+#footer {
+  background-color: #eeeeee;
+  height: 100px;
+}
+
+#imback {
+  text-align: center;
+  margin-top: 90px;
+.img {
+  height:150px;
+  line-height:150px;
+  overflow:hidden;
+  text-align:center;
+  width:150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  img {
+    margin:-100%;
+    width: 100%;
+  }
+  }
+}
+
+#magic {
+  background-color: white;
+  padding: 20px;
+  border: solid 1px #e2e8ea;
+  -webkit-box-shadow: 6px 6px 2px rgba(46,133,155,0.04);
+  box-shadow: 6px 6px 2px rgba(46,133,155,0.04);
+  margin-bottom: 20px;
+  p {
+    margin-bottom: 40px;
+  }
+  h5 {
+    color: #919499;
+    span {
+      margin-right: 5px;
+    }
+  }
+}
+
+.titulo {
+    margin-top: 0px;
+    border-bottom: 1px solid #E8E8E8;
+    border-top: 1px solid #E8E8E8;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding-left: 8px;
+    line-height: 19px;
+    height: 41px;
+    padding-top: 10px;
+    color: #4f4f4f;
+    a {
+      color: $blue;
+      span {
+        font-size: 21px;
+      }
+    }
+  }
+
+  #kingdom {
+    text-align: center;
+    padding: 30px 0;
+    background-color: $red;
+    ul {
+      list-style: none;
+      li {
+        display: inline;
+      }
+    }
+  input[type="text"] {
+  height: 3.2rem;
+  border:none;
+  border-bottom:1.3px solid #dadada;
+  margin-bottom: 1.5rem;
+  background-color: white !important;
+  }
+  }

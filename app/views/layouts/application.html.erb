@@ -19,7 +19,7 @@
 <% end %>
 
 <header class="cd-auto-hide-header">
-	<div class="logo"><a href="#0"><img src="img/cd-logo.svg" alt="Logo"></a></div>
+	<div class="logo"><a href="<%= root_path %>"><%= image_tag ("logo.png")%></a></div>
 
 	<nav class="cd-primary-nav">
 		<a href="#cd-navigation" class="nav-trigger">
@@ -30,20 +30,39 @@
 		</a> <!-- .nav-trigger -->
 
 		<ul id="cd-navigation">
-			<li><a href="#0">The team</a></li>
-			<li><a href="#0">Our Products</a></li>
-			<li><a href="#0">Our Services</a></li>
-			<li><a href="#0">Shopping tools</a></li>
-			<li><a href="#0">Contact Us</a></li>
+
+<ul id="cd-navigation">
+      <% if user_signed_in? %>
+      <li class="mini <%= 'active' if current_page?(edit_user_registration_path) %>">
+        <a href="<%= edit_user_registration_path(@user) %>">Settings</a>
+      </li>
+      <li class="mini"> <a href="<%= destroy_user_session_path %>" data-method='delete'>
+        Sign Out
+      </a></li>
+
+      <% if current_user %>
+      <li class= mini "<%= 'active' if current_page?(new_university_path) %>"><%= link_to 'Add University', new_university_path, class: "sim"%></li>
+      <% end %>
+      <% else %>
+      <li class="mini"><a href="<%= new_user_session_path %>"> Sign In </a></li>
+      <li class="mini"><a href="<%= new_user_registration_path %>"> Sign Up </a></li>
+      <% end %> 
+    </li>
+    </ul>
+
 		</ul>
 	</nav> <!-- .cd-primary-nav -->
+
+
+
 </header> <!-- .cd-auto-hide-header -->
 
-<main class="cd-main-content">
-	<div>
 		<%= yield %>
-	</div>
-</main> <!-- .cd-main-content -->
+
+<div id="footer">
+	
+</div>
+
 </body>
 
 </html>

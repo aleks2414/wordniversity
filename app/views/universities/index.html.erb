@@ -1,61 +1,52 @@
-<%= search_form_for @q do |f| %>
+<div id= "banner" class="cover_home">
+  <div id="hero-text">
+    <h1 style="font-size:50px">Share your <strong>University</strong> <br> Experiences</h1>
+    <h4>Look for your university..Share your experiences..Spread the word</h4>
+
+    <%= search_form_for @q do |f| %>
 
 
-<div class="row">
-  <div class="col-md-6">
-    <%= f.search_field :name_cont, placeholder: "Search you University and spread the word"  %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.search_field :name_cont, placeholder: "Search your University.."  %>
+      </div>
+    </div>
+
+    <%= f.submit "Search", class: "button button_red" %>
+    <% end %>
+
   </div>
 </div>
 
-<%= f.submit "Buscar", class: "button button_red" %>
-<% end %>
-
-<div id="map"></div>
 
 
-<h1>Listing Universities</h1>
+<div class="container">
+<div class="row">
+  <% @universities.each_with_index do |university, i| %>
+  <div class="col-md-4 col-xs-6">
+    <%= link_to university_path(university) do %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Url</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Image</th>
-      <th>Address</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Facebook</th>
-      <th>Twitter</th>
-      <th>Linkedin</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @universities.each do |university| %>
-    <tr>
-      <td><%= university.user %></td>
-      <td><%= university.url %></td>
-      <td><%= university.name %></td>
-      <td><%= university.description %></td>
-      <td><%= university.image %></td>
-      <td><%= university.address %></td>
-      <td><%= university.latitude %></td>
-      <td><%= university.longitude %></td>
-      <td><%= university.facebook %></td>
-      <td><%= university.twitter %></td>
-      <td><%= university.linkedin %></td>
-      <td><%= link_to 'Show', university %></td>
-      <td><%= link_to 'Edit', edit_university_path(university) %></td>
-      <td><%= link_to 'Destroy', university, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+    <div id="magic_card">
+    <h2><%= i+1 %> |</h2>
+      <div class="imagen">
+        <%= image_tag university.image.to_s %>
+      </div>
+      <div class="content">
+        <h3><%= university.try(:name).truncate(50) %></h3>
+        <h4 class="titulo"><%= university.country_code%></h4>
+        <% if university.description.present? %>
+        <p><%= university.try(:description).truncate(100)%></p>
+        <% end %>
+        <h5 class="izq"><span class="fa fa-clone"> <%= university.experiences.count %> contributions </span></h5>
+        <h5 class="der"><span class="fa fa-star"> </span></h5>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+  <% end %>
+</div>
+</div>
 
-<br>
 
 <div class="row">
 <div class="center">
@@ -67,7 +58,17 @@
 
 
 
-<%= link_to 'New University', new_university_path %>
+<div id="map"></div>
+
+
+<div id="back">
+  <div class="col-xs-6">
+    <h1><%= @universityy.count %> Universities</h1>
+  </div>
+  <div class="col-xs-6">
+    <h1><%= @experiences2.count %> Contributions</h1>
+  </div>
+</div>
 
 
 
