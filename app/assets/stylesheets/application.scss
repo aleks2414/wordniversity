@@ -535,6 +535,9 @@ margin-bottom: 20px;
   h1 {
     color: white;
   }
+  h4 {
+    color: white;
+  }
   input[type="search"] {
   min-width: 300px;
   height: 5rem;
@@ -693,3 +696,30 @@ background-attachment: unset;
   background-color: white !important;
   }
   }
+
+  .pencil {
+  margin: 5px;
+  background-color: white;
+  border: solid 2px $red;
+  border-radius: 50%;
+  &:hover  {
+    color:white;
+    background-color: $red;
+  }
+  span {
+    color: $red;
+  }
+}
+
+#curso {
+  ul {
+    list-style: none;
+    li {
+      display: inline;
+      span {
+        color: $red;
+        font-size: 20px;
+      }
+    }
+  }
+}

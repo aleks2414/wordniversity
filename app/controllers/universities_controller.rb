@@ -29,6 +29,7 @@ class UniversitiesController < ApplicationController
     @experiences2 = @university.experiences
     @experiences2 = @experiences2.group_by_day(:created_at).count
     @experiences3 = @university.experiences.count
+    @score = Score.new
 
   end
 

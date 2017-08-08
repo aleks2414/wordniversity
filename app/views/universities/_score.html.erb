@@ -1,0 +1,82 @@
+      <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Your University Score</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for [@university, @score], remote: true, :html => {:id => 'review_form'} do |f| %>
+        <% if @score.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@score.errors.count, "error") %> prohibited this score from being saved:</h2>
+
+          <ul>
+            <% @score.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <div class="field">
+          <%= f.label :score %><br>
+          <%= f.number_field :star %>
+        </div>
+        <div class="actions">
+          <%= f.submit class: "botones button_red" %>
+        </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="curso">
+<ul>
+<li>
+<% if @university.average_score.between?(0, 0.99) %>
+<span class="fa fa-star-half"></span>
+<% elsif @university.average_score.between?(1, 1.49) %>
+<span class="fa fa-star"></span>
+<% elsif @university.average_score.between?(1.5, 1.99) %>
+<span class="fa fa-star"><span class="fa fa-star-half"></span>
+<% elsif @university.average_score.between?(2, 2.49) %>
+<span class="fa fa-star"><span class="fa fa-star"></span>
+<% elsif @university.average_score.between?(2.5, 2.99) %>
+<span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star-half"></span>
+<% elsif @university.average_score.between?(3, 3.49) %>
+<span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star"></span>
+<% elsif @university.average_score.between?(3.5, 3.99) %>
+<span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star-half"></span>
+<% elsif @university.average_score.between?(4, 4.49) %>
+<span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star"></span>
+<% elsif @university.average_score.between?(4.5, 4.99) %>
+<span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star-half"></span>
+<% elsif @university.average_score.between?(5, 5.99) %>
+<h3><span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star"><span class="fa fa-star"></span>
+<% end %>
+</li>
+
+<li>
+<span id="reviews_count">(<%= @university.average_score %>)</span>
+</li>
+
+<!-- Trigger the modal with a button -->
+<li>
+<% if user_signed_in? %><button type="button" class="button button_red" data-toggle="modal" data-target="#myModal">New Score</button><%else%>
+<%= link_to "First Sign In", new_user_session_path, class: "button button_red" %><%end%>
+</li>
+
+</ul>
+</div>
+
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div id="magic">
+      <h4><%= @experiences3 %> contributions</h4>
+    </div>
+  </div>

@@ -1,6 +1,7 @@
 class University < ActiveRecord::Base
 	belongs_to :user
 	has_many :experiences, dependent: :destroy
+	has_many :scores, dependent: :destroy
 
 extend FriendlyId
   friendly_id :name, use: :slugged
@@ -21,7 +22,9 @@ extend FriendlyId
 
 	before_save :scrape_with_grabbit
 
-	
+	 def average_score
+    scores.count == 0 ? 0 : scores.average(:star).round(2)
+  end
 
 	private
 

@@ -1,0 +1,14 @@
+// page.insert_html :bottom, :reviews, :partial => 'review', :object => @review
+// page.replace_html :reviews_count, pluralize(@review.product.reviews.size, 'Review')
+// page[:review_form].reset
+// page.replace_html :notice, flash[:notice]
+// flash.discard
+<% if @score.errors.empty? %>
+$('.alert').html("El producto ha sido creado con éxito").show();
+$("#reviews_count").html("<%= pluralize(@university.average_score,'') %>");
+$("#review_form")[0].reset();
+$('#myModal').modal('hide');
+<% else %>
+  // show first error
+  alert('<%= @score.errors.full_messages[0] %>');
+<% end %>
