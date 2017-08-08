@@ -723,3 +723,30 @@ background-attachment: unset;
     }
   }
 }
+
+.pagination {
+    font-size: 12px;
+}
+
+.pagination > * {
+    margin-right: 0.1em;
+    padding: 0.3em 0.4em;
+}
+
+.pagination a:hover {
+    background: $red none repeat scroll 0 0;
+    color: white;
+}
+
+.pagination a:active {
+    text-shadow: none;
+}
+
+.pagination .current {
+    background: $red none repeat scroll 0 0;
+    color: white;
+}
+
+.pagination .disabled {
+    color: #C0C0C0;
+}
