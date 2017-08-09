@@ -24,7 +24,7 @@
 <div class="container">
 <div class="row">
   <% @universities.each_with_index do |university, i| %>
-  <div class="col-md-4 col-xs-6">
+  <div class="col-md-4">
     <%= link_to university_path(university) do %>
 
     <div id="magic_card">
@@ -63,10 +63,10 @@
 
 
 <div id="back">
-  <div class="col-xs-6">
+  <div class="col-sm-6">
     <h1><%= @universityy.count %> Universities</h1>
   </div>
-  <div class="col-xs-6">
+  <div class="col-sm-6">
     <h1><%= @experiences2.count %> Contributions</h1>
   </div>
 </div>
