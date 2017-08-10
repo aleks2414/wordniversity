@@ -12,15 +12,15 @@
 <br>
 
 <div id="kingdom">
-<h3>Describe your university experiences in 3 words</h3>
+<h3>Why your university rocks? Share it with us</h3>
 <ul>
 <%= form_tag university_experiences_path(@university) do %>
-  <% @kennel.each do |experience| %>
+  <% @kennel.each_with_index do |experience, i| %>
 
     <%= fields_for 'experiences[]', experience do |p| %>
     
     <li>
-    <%= p.text_field :experience, required:true, placeholder: "Your best experiences.." %>
+    <%= p.text_field :experience, required:true, placeholder: "Reason # #{i+1}.." %>
     </li>
 
     <% end %>
