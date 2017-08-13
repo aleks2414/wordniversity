@@ -33,7 +33,7 @@ def create
       params["experiences"].each do |experience|
         if experience["experience"] != ""          
           @new_experience = Experience.new(experience_params(experience))
-          @new_experience.user_id = current_user.id
+          # @new_experience.user_id = current_user.id
           @new_experience.university_id = @university.id
           @new_experience.save
         end
