@@ -97,7 +97,7 @@
           <a class="icon-twitter botones button_red" rel="nofollow"
           href="http://twitter.com/"
           onclick="popUp=window.open(
-            'http://twitter.com/intent/tweet?text=\'<%= @university.name %>\' by Wordniversity - <%="#{university_path(@university)}"%>',
+            'http://twitter.com/intent/tweet?text=\'<%= @university.name %>\' by Wordniversity - <%="#{request.original_url}"%>',
             'popupwindow',
             'scrollbars=yes,width=800,height=400');
           popUp.focus();
@@ -112,7 +112,7 @@
         <a class="icon-pinterest botones button_red" rel="nofollow"
         href="http://www.pinterest.com/"
         onclick="popUp=window.open(
-          'http://pinterest.com/pin/create/button/?url=<%="#{university_path(@university)}"%>&amp;media=&amp;description=<%= @university.name %>',
+          'http://pinterest.com/pin/create/button/?url=<%="#{request.original_url}"%>&amp;media=&amp;description=<%= @university.name %>',
           'popupwindow',
           'scrollbars=yes,width=800,height=400');
         popUp.focus();
@@ -125,7 +125,7 @@
       <a class="icon-gplus botones button_red" rel="nofollow"
       href="http://www.plus.google.com/"
       onclick="popUp=window.open(
-        'https://plus.google.com/share?url=<%="#{university_path(@university)}"%>',
+        'https://plus.google.com/share?url=<%="#{request.original_url}"%>',
         'popupwindow',
         'scrollbars=yes,width=800,height=400');
       popUp.focus();
