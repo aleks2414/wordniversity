@@ -8,7 +8,7 @@ class UniversitiesController < ApplicationController
     @q = University.ransack(params[:q])
     @universities = @q.result.uniq
 
-    @universities = @universities.order('id ASC').paginate(:page => params[:page], :per_page => 12)
+    @universities = @universities.order('country_code ASC').paginate(:page => params[:page], :per_page => 12)
 
     @arrUnis = @universities.to_a
 
