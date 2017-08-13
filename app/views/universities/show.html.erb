@@ -20,7 +20,7 @@
     <%= fields_for 'experiences[]', experience do |p| %>
     
     <li>
-    <%= p.text_field :experience, required:true, placeholder: "Reason # #{i+1}.." %>
+    <%= p.text_field :experience, data: {autocomplete_source: Experience.order(:experience).map(&:experience).uniq}, required:true, placeholder: "Reason # #{i+1}.." %>
     </li>
 
     <% end %>
